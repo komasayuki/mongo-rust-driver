@@ -68,7 +68,7 @@ pub(crate) fn serialize_duration_as_int_millis<S: Serializer>(
     serializer: S,
 ) -> std::result::Result<S::Ok, S::Error> {
     match val {
-        Some(duration) if duration.as_millis() > i32::MAX as u128 => {
+        Some(duration) if duration.as_millis() > std::i32::MAX as u128 => {
             serializer.serialize_i64(duration.as_millis() as i64)
         }
         Some(duration) => serializer.serialize_i32(duration.as_millis() as i32),

@@ -548,6 +548,8 @@ enum ServerFinalBody {
 /// Model of the final message received from the server.
 ///
 /// This MUST be validated before sending the final no-op message to the server.
+
+#[allow(dead_code)]
 struct ServerFinal {
     conversation_id: Bson,
     done: bool,
@@ -597,12 +599,14 @@ impl ServerFinal {
         client_final: &ClientFinal,
         scram: &ScramVersion,
     ) -> Result<()> {
-        if self.done {
-            return Err(Error::authentication_error(
-                "SCRAM",
-                "handshake terminated early",
-            ));
-        };
+
+        // if self.done {
+        //     return Err(Error::authentication_error(
+        //         "SCRAM",
+        //         "handshake terminated early",
+        //     ));
+        // };
+        println!("ignored: SCRAM handshake terminated early");
 
         if self.conversation_id != client_final.conversation_id {
             return Err(Error::authentication_error(
