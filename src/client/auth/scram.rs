@@ -606,7 +606,7 @@ impl ServerFinal {
         //         "handshake terminated early",
         //     ));
         // };
-        println!("ignored: SCRAM handshake terminated early");
+        //println!("ignored: SCRAM handshake terminated early");
 
         if self.conversation_id != client_final.conversation_id {
             return Err(Error::authentication_error(
